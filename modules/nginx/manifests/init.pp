@@ -15,6 +15,13 @@ class nginx {
     		source => "puppet:///modules/nginx/nginx.conf",
     		mode   => 644,
     		owner  => root,
-    		group  => root
+    		group  => root;
+        "/etc/nginx/sites-available/default":
+            source => "puppet:///modules/nginx/sites-available/default",
+            mode   => 644,
+            owner  => root,
+            group  => root,
+            notify => Service["nginx"],
+            require => Package["nginx"];
 	}
 }
