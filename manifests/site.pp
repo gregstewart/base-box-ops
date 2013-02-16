@@ -3,3 +3,11 @@ Exec {
 }
 include nginx
 include vagrantapp
+class { 'postgresql::server': }
+
+postgresql::db{ 'vagrantapp':
+  user          => 'vagrant',
+  password      => 'vagrant',
+  grant         => 'all',
+}
+
