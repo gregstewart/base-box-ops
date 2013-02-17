@@ -1,6 +1,8 @@
 class vagrantapp {
   file {
-    ["/var/vagrant-app/",
+    ["/home/vagrant/app",
+    "/home/vagrant/logs",
+    "/var/vagrant-app/",
     "/var/vagrant-app/current",
     "/var/vagrant-app/current/public",
     "/var/vagrant-app/shared/",

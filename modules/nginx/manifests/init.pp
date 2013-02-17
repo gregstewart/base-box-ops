@@ -12,16 +12,26 @@ class nginx {
   }
   file {
     "/etc/nginx/nginx.conf":
-    source => "puppet:///modules/nginx/nginx.conf",
-    mode   => 644,
-    owner  => root,
-    group  => root;
+      source => "puppet:///modules/nginx/nginx.conf",
+      mode   => 644,
+      owner  => root,
+      group  => root;
     "/etc/nginx/sites-available/default":
-    source => "puppet:///modules/nginx/sites-available/default",
-    mode   => 644,
-    owner  => root,
-    group  => root,
-    notify => Service["nginx"],
-    require => Package["nginx"];
+      source => "puppet:///modules/nginx/sites-available/default",
+      mode   => 644,
+      owner  => root,
+      group  => root,
+      notify => Service["nginx"],
+      require => Package["nginx"];
+    "/etc/nginx/sites-available/vagrant-dev":
+        source => "puppet:///modules/nginx/sites-available/vagrant-dev",
+        mode   => 644,
+        owner  => root,
+        group  => root,
+        notify => Service["nginx"],
+        require => Package["nginx"];
+    "/etc/nginx/sites-enabled/vagrant-dev":
+         ensure => 'link',
+         target => '/etc/nginx/sites-available/vagrant-dev';
   }
 }
