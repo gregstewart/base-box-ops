@@ -1,8 +1,11 @@
 Exec {
   path => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 }
+
+include buildtools
 include nginx
 include vagrantapp
+
 class { 'postgresql::server': }
 
 postgresql::db{ 'vagrantapp':
